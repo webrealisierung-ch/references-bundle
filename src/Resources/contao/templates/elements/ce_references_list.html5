@@ -1,0 +1,27 @@
+<div class="wr_references-list">
+    <?php if($this->Items): ?>
+        <?php foreach ($this->Items as $Item): ?>
+            <div class="wr-reference-entry">
+                <h1><?= $Item->title; ?></h1>
+                <div class="teaser"><?= $Item->teaser; ?></div>
+                <?php
+                    $Image=\Contao\FilesModel::findByUuid($Item->singleSRC);
+                    echo \Contao\Image::getHtml($Image->path);
+                ?>
+                <a href="<?=$this->generateFrontendUrl($GLOBALS['objPage']->row(),"/object/".$Item->alias) ?>">Detail...</a>
+            </div>
+        <?php endforeach; ?>
+    <?php elseif($this->Item):?>
+        <div class="wr-reference-detail">
+            <h1><?= $this->Item->title; ?></h1>
+            <div class="description"><?= $this->Item->teaser; ?></div>
+            <?php
+            $Image=\Contao\FilesModel::findByUuid($this->Item->singleSRC);
+            echo \Contao\Image::getHtml($Image->path);
+            ?>
+            <p class="back"><a href="javascript:history.go(-1)" title="Zurück">Zurück</a></p>
+        </div>
+    <?php else: ?>
+        <div> Kein Referenz Objekt gefunden.</div>
+    <?php endif; ?>
+</div>

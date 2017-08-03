@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/modules.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="CTE.wr">
+        <source>Company</source>
+        <target>Firma</target>
+      </trans-unit>
+      <trans-unit id="CTE.wr_references_list.0">
+        <source>References list</source>
+        <target>Referenzen Liste</target>
+      </trans-unit>
+      <trans-unit id="CTE.wr_references_filter.0">
+        <source>References filter</source>
+        <target>Referenzen Filter</target>
+      </trans-unit>
+      <trans-unit id="MOD.wr">
+        <source>Company</source>
+        <target>Firma</target>
+      </trans-unit>
+      <trans-unit id="MOD.wr_references.0">
+        <source>References</source>
+        <target>Referenzen</target>
+      </trans-unit>
+      <trans-unit id="MOD.wr_references.1">
+        <source>Manage reference objects</source>
+        <target>Verwalten von Referenz Objekten</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

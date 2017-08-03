@@ -1,0 +1,38 @@
+{
+  "name": "wr/references-bundle",
+  "type": "contao-bundle",
+  "description": "Bundle to manage, show and filter reference object for Contao Open Source CMS",
+  "keywords": ["references","reference","filter","contao"],
+  "homepage": "https://github.com/webrealisierung-ch/references-bundle",
+  "license": "LGPL-3.0",
+  "authors": [
+    {
+      "name": "Daniel Steuri ",
+      "email": "mail@webrealisierung.ch",
+      "homepage": "https://webrealisierung.ch"
+    }
+  ],
+  "require": {
+    "php": "^7.0",
+    "symfony/framework-bundle": "^3.3",
+    "contao/core-bundle": "^4.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Wr\\ReferencesBundle\\": "src/"
+    },
+    "classmap": [
+      "src/Resources/contao/"
+    ],
+    "exclude-from-classmap": [
+      "src/Resources/contao/assets/",
+      "src/Resources/contao/config/",
+      "src/Resources/contao/dca/",
+      "src/Resources/contao/languages/",
+      "src/Resources/contao/templates/"
+    ]
+  },
+  "extra": {
+    "contao-manager-plugin": "Wr\\ReferencesBundle\\ContaoManager\\Plugin"
+  }
+}
