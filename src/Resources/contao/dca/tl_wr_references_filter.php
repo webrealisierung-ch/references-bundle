@@ -105,7 +105,8 @@ $GLOBALS['TL_DCA']['tl_wr_references_filter'] = array(
             'label' => &$GLOBALS['TL_LANG']['tl_wr_references_filter']['teaser'],
             'inputType' => 'textarea',
             'search' => false,
-            'sql' => 'text NULL'
+            'sql' => 'text NULL',
+            'eval' => array('tl_class'=>'clr'),
         ),
         'filter' => array
         (
