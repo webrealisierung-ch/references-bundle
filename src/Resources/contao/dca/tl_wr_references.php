@@ -112,7 +112,7 @@ $GLOBALS['TL_DCA']['tl_wr_references'] = array(
             'label' => &$GLOBALS['TL_LANG']['tl_wr_references']['teaser'],
             'inputType' => 'textarea',
             'search' => false,
-            'eval' => array('mandatory'=>true),
+            'eval' => array('mandatory'=>true,'tl_class'=>'clr'),
             'sql' => 'text NULL'
         ),
         'description' => array
@@ -155,7 +155,7 @@ $GLOBALS['TL_DCA']['tl_wr_references'] = array(
             'label'                   => &$GLOBALS['TL_LANG']['tl_wr_references']['filter1'],
             'exclude'                 => true,
             'search'                  => true,
-            //'filter'                  => true,
+            'filter'                  => true,
             'inputType'               => 'select',
             //'options'                 => array('2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022','2023'),
             'options_callback'        => array('tl_wr_references','getFilterOptions'),
@@ -167,7 +167,7 @@ $GLOBALS['TL_DCA']['tl_wr_references'] = array(
             'label'                   => &$GLOBALS['TL_LANG']['tl_wr_references']['filter2'],
             'exclude'                 => true,
             'search'                  => true,
-            //'filter'                  => true,
+            'filter'                  => true,
             'inputType'               => 'select',
             'options_callback'        => array('tl_wr_references', 'getFilterOptions'),
             'eval'                    => array('multiple'=>false, 'mandatory'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
@@ -178,7 +178,7 @@ $GLOBALS['TL_DCA']['tl_wr_references'] = array(
             'label'                   => &$GLOBALS['TL_LANG']['tl_wr_references']['filter3'],
             'exclude'                 => true,
             'search'                  => true,
-            //'filter'                  => true,
+            'filter'                  => true,
             'inputType'               => 'select',
             'options_callback'        => array('tl_wr_references', 'getFilterOptions'),
             'eval'                    => array('doNotCopy'=>true, 'mandatory'=>true, 'multiple'=>true, 'chosen'=>true, 'includeBlankOption'=>true, 'tl_class'=>'w50'),
@@ -241,7 +241,13 @@ class tl_wr_references extends Backend{
         return $varValue;
     }
     public function getFilterOptions($dc){
-        $filterOptions = \WrReferencesFilterModel::findByFilter($dc->field);
+        $listValues = array();
+        if($dc->field){
+            $filterOptions = \WrReferencesFilterModel::findByFilter($dc->field);
+        } else{
+            $filterOptions = \WrReferencesFilterModel::findAll();
+        }
+
         if($filterOptions){
             while ($filterOptions->next()){
                 $listValues[$filterOptions->alias]=$filterOptions->title;
