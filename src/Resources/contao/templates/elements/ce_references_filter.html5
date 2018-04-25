@@ -1,7 +1,0 @@
-<div>
-    <form method="post" id="wr-filter-form" name="wrrefertenzform" action="<?=$this->href?>">
-        <input type="hidden" name="REQUEST_TOKEN" value="<?= REQUEST_TOKEN ?>">
-        <?= $this->selectFilters; ?>
-        <input type="submit" value="Senden">
-    </form>
-</div>

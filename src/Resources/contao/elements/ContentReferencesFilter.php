@@ -22,7 +22,7 @@ class ContentReferencesFilter extends \ContentElement
 	 * Template
 	 * @var string
 	 */
-	protected $strTemplate = 'ce_references_filter';
+	protected $strTemplate = 'ce_wr_references_filter';
 
 
     public function generate()
