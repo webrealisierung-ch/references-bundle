@@ -26,16 +26,16 @@
                 <target>Filter Einstellungen</target>
             </trans-unit>
             <trans-unit id="tl_wr_references_filter.new.0">
-                <target>Neue Referenz</target>
+                <target>Neuer Filtereintrag</target>
             </trans-unit>
             <trans-unit id="tl_wr_references_filter.filter.0">
                 <target>Filtertyp</target>
             </trans-unit>
             <trans-unit id="tl_wr_references_filter.edit.1">
-                <target>Referenz bearbeiten</target>
+                <target>Filtereintrag bearbeiten</target>
             </trans-unit>
             <trans-unit id="tl_wr_references_filter.delete.1">
-                <target>Referenz löschen</target>
+                <target>Filtereintrag löschen</target>
             </trans-unit>
         </body>
     </file>
