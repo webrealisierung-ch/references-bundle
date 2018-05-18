@@ -29,9 +29,9 @@ $GLOBALS['TL_DCA']['tl_wr_references'] = array(
         ),
         'label' => array
         (
-            'fields'                  => array('title','filter1', 'filter2', 'filter3'),
-            'format'                  => '%s - %s',
-            'showColumns'   => true,
+            'fields'            => array('title','filter1', 'filter2', 'filter3'),
+            'showColumns'       => true,
+            'label_callback'    => array('tl_wr_references','generateLabel')
         ),
         'global_operations' => array
         (
@@ -240,7 +240,7 @@ class tl_wr_references extends Backend{
 
         return $varValue;
     }
-    public function getFilterOptions($dc){
+    public function getFilterOptions( DataContainer $dc){
         $listValues = array();
         if($dc->field){
             $filterOptions = \WrReferencesFilterModel::findByFilter($dc->field);
@@ -254,14 +254,37 @@ class tl_wr_references extends Backend{
             }
             arsort($listValues);
         }
-
         return $listValues;
     }
-    public function getYears(){
-        $years=[];
-        foreach(range(2000, 2025) as $number) {
-             array_push($years,$number);
+
+    public function generateLabel($values, $label, DataContainer $dc){
+
+        $filter1Label=$this->generateFilterLabel($values,'filter1');
+        $filter2Label=$this->generateFilterLabel($values,'filter2');
+        $filter3Label=$this->generateFilterLabel($values,'filter3');
+
+        $labels = array(
+            $values['title'], $filter1Label, $filter2Label, $filter3Label,
+        );
+
+        return $labels;
+    }
+
+    protected function generateFilterLabel($values,$field){
+        $filter = Contao\StringUtil::deserialize($values[$field]);
+        $filterLabel = '';
+        if(is_array($filter)){
+            $first = true;
+            foreach($filter as $value){
+                $filterValue = \WrReferencesFilterModel::findByAlias($value)->title;
+                $filterLabel .= ($first)?$filterValue: ", ".$filterValue;
+                $first = false;
+            }
+        } elseif(is_string($filter)){
+            $filterLabel=\WrReferencesFilterModel::findByAlias($values[$field])->title;
+        } else{
+            $filterLabel = '';
         }
-        return $years;
+        return $filterLabel;
     }
 }
