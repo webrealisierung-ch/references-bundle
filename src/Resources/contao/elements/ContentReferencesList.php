@@ -22,7 +22,7 @@ class ContentReferencesList extends \ContentElement
 	 * Template
 	 * @var string
 	 */
-	protected $strTemplate = 'ce_references_list';
+	protected $strTemplate = 'ce_wr_references_list';
 
     /**
      * Remove name attributes in the back end so the form is not validated
@@ -59,6 +59,7 @@ class ContentReferencesList extends \ContentElement
 
         $filter_options = array();
         $arrGetFilters = array();
+
         foreach($GLOBALS['TL_DCA']['tl_wr_references']['fields'] as $key => $value){
             if(preg_match("/filter/",$key)){
                 $filter_options[$key]=$this->$key;
@@ -68,6 +69,7 @@ class ContentReferencesList extends \ContentElement
                 }
             }
         }
+
         if($getObject){
             $item = WrReferencesModel::findByAlias($getObject);
             $this->Template->Item = $item;
@@ -79,6 +81,5 @@ class ContentReferencesList extends \ContentElement
             $items = WrReferencesModel::findByFilters($filter_options);
             $this->Template->Items = $items;
         }
-        return;
     }
 }
