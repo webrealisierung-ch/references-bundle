@@ -24,11 +24,6 @@ class ContentReferencesList extends \ContentElement
 	 */
 	protected $strTemplate = 'ce_wr_references_list';
 
-	public function __construct()
-    {
-        \Controller::loadDataContainer('tl_wr_references');
-    }
-
     /**
      * Remove name attributes in the back end so the form is not validated
      *
@@ -55,6 +50,8 @@ class ContentReferencesList extends \ContentElement
 
 	protected function compile()
     {
+
+        \Controller::loadDataContainer('tl_wr_references');
 
         // Get Filters as array
         $filters = $this->composeFiltersAsArray();
@@ -97,6 +94,8 @@ class ContentReferencesList extends \ContentElement
     }
 
     private function composeFiltersAsArray(){
+
+        \Controller::loadDataContainer('tl_wr_references');
 
         $filters = array();
 
