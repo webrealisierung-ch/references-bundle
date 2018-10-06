@@ -24,12 +24,12 @@ class ContentReferencesList extends \ContentElement
 	 */
 	protected $strTemplate = 'ce_wr_references_list';
 
-	public function __construct()
+	public function __construct($objElement, $strColumn)
     {
 
         \Controller::loadDataContainer('tl_wr_references');
 
-        parent::__construct();
+        parent::__construct($objElement, $strColumn);
     }
 
     /**
