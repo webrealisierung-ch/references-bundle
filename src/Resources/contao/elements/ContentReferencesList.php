@@ -24,6 +24,11 @@ class ContentReferencesList extends \ContentElement
 	 */
 	protected $strTemplate = 'ce_wr_references_list';
 
+	public function __construct()
+    {
+        \Controller::loadDataContainer('tl_wr_references');
+    }
+
     /**
      * Remove name attributes in the back end so the form is not validated
      *
@@ -50,13 +55,21 @@ class ContentReferencesList extends \ContentElement
 
 	protected function compile()
     {
-        //Load Data Container File from the table tl_wr_references
-        \Controller::loadDataContainer('tl_wr_references');
 
+        // Get Filters as array
+        $filters = $this->composeFiltersAsArray();
+
+        $this->Template->Filters = $filters;
+        $this->Template->FiltersAsJson = json_encode($filters);
+
+        //Create Objects as Json
+
+
+        //
         \Input::setGet('object', \Input::get('object'));
         $getObject=\Input::get('object');
-        //Search all Filter fields in  the data container
 
+        //Search all Filter fields in the data container
         $filter_options = array();
         $arrGetFilters = array();
 
@@ -82,4 +95,43 @@ class ContentReferencesList extends \ContentElement
             $this->Template->Items = $items;
         }
     }
+
+    private function composeFiltersAsArray(){
+
+        $filters = array();
+
+        foreach($GLOBALS['TL_DCA']['tl_wr_references']['fields'] as $key => $value){
+
+            if(preg_match("/filter/",$key)){
+
+                $multiple = $value['eval']['multiple'];
+                $title = $value['label'][0];
+
+                $filter = array(
+                    'title' => (is_string($title)) ? $title : $key,
+                    'multiple' => (is_bool($multiple)) ? $multiple : false,
+                    'values' => array()
+                );
+
+                $filterObj = WrReferencesFilterModel::findByFilter($key,array('order'=>'alias DESC'));
+
+                foreach($filterObj as $filterData){
+                    $filter['values'][] = array(
+                            'alias' => $filterData->alias,
+                            'title' => $filterData->title
+                    );
+                };
+
+                $filters[] = $filter;
+
+                unset($name);
+                unset($multiple);
+
+            }
+        }
+
+        return $filters;
+
+    }
+
 }
