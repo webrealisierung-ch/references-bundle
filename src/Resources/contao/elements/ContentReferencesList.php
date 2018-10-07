@@ -126,7 +126,7 @@ class ContentReferencesList extends \ContentElement
                     );
                 };
 
-                $filters[] = $filter;
+                $filters[$key] = $filter;
 
                 unset($name);
                 unset($multiple);
