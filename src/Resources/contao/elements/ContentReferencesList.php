@@ -121,7 +121,8 @@ class ContentReferencesList extends \ContentElement
                 foreach($filterObj as $filterData){
                     $filter['values'][] = array(
                             'alias' => $filterData->alias,
-                            'title' => $filterData->title
+                            'title' => $filterData->title,
+                            'active' => false
                     );
                 };
 
