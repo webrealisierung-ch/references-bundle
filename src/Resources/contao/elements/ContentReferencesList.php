@@ -111,18 +111,21 @@ class ContentReferencesList extends \ContentElement
                 $title = $value['label'][0];
 
                 $filter = array(
+                    'alias' => $key,
                     'title' => (is_string($title)) ? $title : $key,
                     'multiple' => (is_bool($multiple)) ? $multiple : false,
-                    'values' => array()
+                    'values' => array(),
+                    'visible' => false,
+                    'active' => false,
                 );
 
                 $filterObj = WrReferencesFilterModel::findByFilter($key,array('order'=>'alias DESC'));
 
                 foreach($filterObj as $filterData){
                     $filter['values'][] = array(
-                            'alias' => $filterData->alias,
-                            'title' => $filterData->title,
-                            'active' => false
+                        'alias' => $filterData->alias,
+                        'title' => $filterData->title,
+                        'active' => false
                     );
                 };
 
