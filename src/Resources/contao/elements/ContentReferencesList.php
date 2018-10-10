@@ -26,7 +26,7 @@ class ContentReferencesList extends \ContentElement
 
 	public function __construct($objElement, $strColumn)
     {
-
+        \Contao\System::loadLanguageFile('tl_wr_references');
         \Controller::loadDataContainer('tl_wr_references');
 
         parent::__construct($objElement, $strColumn);
