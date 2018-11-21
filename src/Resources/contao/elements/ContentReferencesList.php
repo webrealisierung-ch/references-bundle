@@ -94,7 +94,10 @@ class ContentReferencesList extends \ContentElement
             $items = WrReferencesModel::findByFilters($arrGetFilters);
             $this->Template->Items = $items;
         }else{
-            $items = WrReferencesModel::findByFilters($filter_options);
+            $items = WrReferencesModel::findAll(array(
+                'column' => array('published=?'),
+                'value' => array(1)
+            ));
             $this->Template->Items = $items;
         }
     }
