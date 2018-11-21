@@ -11,10 +11,10 @@
     background-repeat: no-repeat;
     margin-left: 15px
 }
-ul.sort_gallerySRC {
+ul#sort_gallerySRC {
     overflow: hidden;
 }
-ul.sort_gallerySRC li {
+ul#sort_gallerySRC li {
     min-width: 75px;
     min-height: 50px;
     float: left;
