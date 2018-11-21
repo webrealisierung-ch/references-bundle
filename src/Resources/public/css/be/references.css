@@ -11,3 +11,20 @@
     background-repeat: no-repeat;
     margin-left: 15px
 }
+ul.sort_gallerySRC {
+    overflow: hidden;
+}
+ul.sort_gallerySRC li {
+    min-width: 75px;
+    min-height: 50px;
+    float: left;
+    margin: 2px 4px 2px 0;
+    padding: 0;
+    background: #eee;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
