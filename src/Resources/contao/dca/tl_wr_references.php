@@ -62,7 +62,7 @@ $GLOBALS['TL_DCA']['tl_wr_references'] = array(
     // Palettes
     'palettes' => array(
         '__selector__' => array('published'),
-        'default' => '{references_content_legend},title,alias,teaser,description;{references_image_legend},singleSRC,singleSize,gallerySRC;{references_filter_legend},filter1,filter2,filter3;{references_publish_legend},published;'
+        'default' => '{references_content_legend},title,alias,teaser,description;{references_image_legend},singleSRC,singleSize,gallerySRC;{references_filter_legend},filter1,filter2,filter3;{publish_legend},published;'
     ),
     // Subpalettes
     'subpalettes' => array
