@@ -4,7 +4,7 @@
 \Controller::loadDataContainer('tl_wr_references');
 \Controller::loadDataContainer('tl_wr_references_filter');
 
-$GLOBALS['TL_DCA']['tl_content']['palettes']['wr_references_list'] = "{type_legend},type,headline;{filter_legend},filter1,filter2,filter3,activateFilter;{template_legend:hide},customTpl;";
+$GLOBALS['TL_DCA']['tl_content']['palettes']['wr_references_list'] = "{type_legend},type,headline;{filter_legend},filter1,filter2,filter3,activateFilter;{image_legend},size;{template_legend:hide},customTpl;";
 $GLOBALS['TL_DCA']['tl_content']['palettes']['wr_references_filter'] = "{type_legend},type;{filter_legend},tl_references_filters;{template_legend:hide},customTpl;";
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['filter1'] = array
@@ -14,7 +14,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['filter1'] = array
     'search'                  => true,
     'inputType'               => 'select',
     'options_callback'        => array('tl_wr_references','getFilterOptions'),
-    'eval'                    => array('multiple'=>false, 'includeBlankOption'=>true, 'tl_class'=>'w50'),
+    'eval'                    => array('multiple'=>false, 'includeBlankOption'=>true, 'tl_class'=>'w50 clr'),
     'sql'                     => "varchar(255) NULL"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['filter2'] = array
@@ -34,7 +34,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['filter3'] = array
     'search'                  => true,
     'inputType'               => 'select',
     'options_callback'        => array('tl_wr_references', 'getFilterOptions'),
-    'eval'                    => array('doNotCopy'=>true, 'multiple'=>true, 'chosen'=>true, 'includeBlankOption'=>true, 'tl_class'=>'w50'),
+    'eval'                    => array('doNotCopy'=>true, 'multiple'=>true, 'chosen'=>true, 'includeBlankOption'=>true, 'tl_class'=>'w50 clr'),
     'sql'                     => "varchar(255) NULL"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['activateFilter'] = array
