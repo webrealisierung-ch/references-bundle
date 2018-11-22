@@ -67,10 +67,7 @@ class ContentReferencesList extends \ContentElement
         $this->Template->Filters = $filters;
         $this->Template->FiltersAsJson = json_encode($filters);
 
-        //Create Objects as Json
 
-
-        //
         \Input::setGet('object', \Input::get('object'));
         $getObject=\Input::get('object');
 
@@ -94,14 +91,20 @@ class ContentReferencesList extends \ContentElement
         }
         elseif($arrGetFilters && $this->activateFilter){
             $items = WrReferencesModel::findByFilters($arrGetFilters);
-            $this->Template->Items = $items;
         }else{
             $items = WrReferencesModel::findAll(array(
                 'column' => array('published=?'),
                 'value' => array(1)
             ));
-            $this->Template->Items = $items;
         }
+
+        $referenceItems = array();
+
+        foreach($items as $item){
+            $referenceItems[] = new Reference($item);
+        }
+
+        $this->Template->Items = $referenceItems;
     }
 
     private function composeFiltersAsArray(){
