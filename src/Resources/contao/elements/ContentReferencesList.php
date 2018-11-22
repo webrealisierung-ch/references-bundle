@@ -59,6 +59,8 @@ class ContentReferencesList extends \ContentElement
 	protected function compile()
     {
 
+        $this->Template->size = deserialize($this->size);
+
         // Get Filters as array
         $filters = $this->composeFiltersAsArray();
 
