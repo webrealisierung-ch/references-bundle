@@ -61,7 +61,9 @@ class ContentReferencesList extends \ContentElement
 	protected function compile()
     {
 
-        $this->Template->size = deserialize($this->size);
+        $imageSize = deserialize($this->size);
+
+        $this->Template->size = $imageSize;
 
         // Get Filters as array
         $filters = $this->composeFiltersAsArray();
@@ -103,7 +105,14 @@ class ContentReferencesList extends \ContentElement
         $referenceItems = array();
 
         foreach($items as $item){
-            $referenceItems[] = new Reference($item);
+
+            if(is_array($imageSize)){
+                $Reference = new Reference($item,$imageSize);
+            } else{
+                $Reference = new Reference($item);
+            }
+
+            $referenceItems[] = $Reference;
         }
 
         $this->Template->Items = $referenceItems;

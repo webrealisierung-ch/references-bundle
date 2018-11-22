@@ -30,8 +30,7 @@ class Reference
 
     protected $imageFactory;
 
-
-    public function __construct($Reference)
+    public function __construct($Reference, array $size = NULL)
     {
 
         $this->title = $Reference->title;
@@ -48,7 +47,8 @@ class Reference
         $this->stop = $Reference->stop;
         $this->gallerySRC = $Reference->gallerySRC;
         $this->imageFactory = \Contao\System::getContainer()->get('contao.image.image_factory');
-
+        $this->titleImageSize = $size;
+        $this->galleryImageSize = $size;
 
         if($this->singleSRC) {
 
@@ -58,8 +58,8 @@ class Reference
 
                 $titleImageFile = new File($titleImageModel->path);
 
-                if($titleImageFile->exists() && $titleImageFile->isImage && is_array($this->size)){
-                    $this->titleImage = $this->imageFactory->create(TL_ROOT . "/" . rawurldecode($titleImageFile->path), $this->size)->getUrl(TL_ROOT);
+                if($titleImageFile->exists() && $titleImageFile->isImage && is_array($this->titleImageSize)){
+                    $this->titleImage = $this->imageFactory->create(TL_ROOT . "/" . rawurldecode($titleImageFile->path), $this->titleImageSize)->getUrl(TL_ROOT);
                 } elseif(file_exists(TL_ROOT.'/'.$titleImageFile->path)){
                     $this->titleImage = $titleImageModel->path;
                 }
@@ -85,13 +85,4 @@ class Reference
             }
         }
     }
-
-    public function setTitleImageSize(array $size){
-        $this->titleImageSize = $size;
-    }
-
-    public function setGalleryImageSize(array $size){
-        $this->galleryImageSize = $size;
-    }
-
 }
