@@ -10,6 +10,8 @@
 
 namespace Contao;
 
+use Wr\ReferencesBundle\Reference\Reference;
+
 /**
  * Front end content element "References List".
  *
