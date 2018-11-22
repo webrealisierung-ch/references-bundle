@@ -71,13 +71,13 @@ class Reference
 
             switch ($fileObj->type){
                 case 'file':
-                    $this->galleryImages[] = new File($fileObj->path);
+                    $this->galleryImages[] = self::generateImage($fileObj->path,$size,$this->imageFactory);
                     break;
                 case 'folder':
                     $subFilesObj = FilesModel::findByPid($fileObj->uuid);
                     foreach($subFilesObj as $subFileObj){
                         if($subFileObj->type === 'folder') break;
-                        $this->galleryImages[] = new File($subFileObj->path);
+                        $this->galleryImages[] = self::generateImage($subFileObj->path,$size,$this->imageFactory);
                     }
                     break;
             }
@@ -94,7 +94,7 @@ class Reference
             } elseif(file_exists(TL_ROOT.'/'.$ImageFile->path)){
                 return $ImageFile->path;
             }
-            
+
         }
         return '';
     }
