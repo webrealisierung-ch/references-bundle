@@ -58,7 +58,7 @@ class Reference
 
                 $titleImageFile = new File($titleImageModel->path);
 
-                if($titleImageFile->exists() && $titleImageFile->isImage() && is_array($this->size)){
+                if($titleImageFile->exists() && $titleImageFile->isImage && is_array($this->size)){
                     $this->titleImage = $this->imageFactory->create(TL_ROOT . "/" . rawurldecode($titleImageFile->path), $this->size)->getUrl(TL_ROOT);
                 } elseif(file_exists(TL_ROOT.'/'.$titleImageFile->path)){
                     $this->titleImage = $titleImageModel->path;
