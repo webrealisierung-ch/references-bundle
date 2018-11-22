@@ -58,11 +58,8 @@ class Reference
 
                 $titleImageFile = new File($titleImageModel->path);
 
-                if($titleImageFile->exists() && $titleImageFile->isImage && is_array($this->titleImageSize)){
-                    $this->titleImage = $this->imageFactory->create(TL_ROOT . "/" . rawurldecode($titleImageFile->path), $this->titleImageSize)->getUrl(TL_ROOT);
-                } elseif(file_exists(TL_ROOT.'/'.$titleImageFile->path)){
-                    $this->titleImage = $titleImageModel->path;
-                }
+                $this->titleImage = self::generateImage($titleImageFile->path,$size,$this->imageFactory);
+
             }
 
         }
@@ -71,6 +68,7 @@ class Reference
         foreach ($uuids as $uuid){
 
             $fileObj = FilesModel::findByUuid(\StringUtil::binToUuid($uuid));
+
             switch ($fileObj->type){
                 case 'file':
                     $this->galleryImages[] = new File($fileObj->path);
@@ -83,6 +81,21 @@ class Reference
                     }
                     break;
             }
+        }
+    }
+
+    static function generateImage($ImagePath, $size, $imageFactory){
+        if($ImagePath) {
+
+            $ImageFile = new File($ImagePath->path);
+
+            if($ImageFile->exists() && $ImageFile->isImage && is_array($size)){
+                return $imageFactory->create(TL_ROOT . "/" . rawurldecode($ImageFile->path), $size)->getUrl(TL_ROOT);
+            } elseif(file_exists(TL_ROOT.'/'.$ImageFile->path)){
+                return $ImageFile->path;
+            }
+
+            return '';
         }
     }
 }
