@@ -58,7 +58,7 @@ class Reference
 
                 $titleImageFile = new File($titleImageModel->path);
 
-                $this->titleImage = self::generateImage($titleImageFile->path,$size,$this->imageFactory);
+                $this->titleImage = self::generateImage($titleImageFile->path,$this->titleImageSize,$this->imageFactory);
 
             }
 
@@ -71,13 +71,13 @@ class Reference
 
             switch ($fileObj->type){
                 case 'file':
-                    $this->galleryImages[] = self::generateImage($fileObj->path,$size,$this->imageFactory);
+                    $this->galleryImages[] = self::generateImage($fileObj->path,$this->galleryImageSize,$this->imageFactory);
                     break;
                 case 'folder':
                     $subFilesObj = FilesModel::findByPid($fileObj->uuid);
                     foreach($subFilesObj as $subFileObj){
                         if($subFileObj->type === 'folder') break;
-                        $this->galleryImages[] = self::generateImage($subFileObj->path,$size,$this->imageFactory);
+                        $this->galleryImages[] = self::generateImage($subFileObj->path,$this->galleryImageSize,$this->imageFactory);
                     }
                     break;
             }
