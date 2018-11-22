@@ -85,17 +85,17 @@ class Reference
     }
 
     static function generateImage($ImagePath, $size, $imageFactory){
-        if($ImagePath) {
+        if(!empty($ImagePath)) {
 
-            $ImageFile = new File($ImagePath->path);
+            $ImageFile = new File($ImagePath);
 
             if($ImageFile->exists() && $ImageFile->isImage && is_array($size)){
                 return $imageFactory->create(TL_ROOT . "/" . rawurldecode($ImageFile->path), $size)->getUrl(TL_ROOT);
             } elseif(file_exists(TL_ROOT.'/'.$ImageFile->path)){
                 return $ImageFile->path;
             }
-
-            return '';
+            
         }
+        return '';
     }
 }
