@@ -3,6 +3,8 @@
 
 namespace Wr\ReferencesBundle\Reference;
 
+use Contao\File;
+use Contao\FilesModel;
 
 class Reference
 {
@@ -42,22 +44,19 @@ class Reference
         $uuids = deserialize($Reference->gallerySRC);
         foreach ($uuids as $uuid){
 
-            $fileObj = \FilesModel::findByUuid(\StringUtil::binToUuid($uuid));
+            $fileObj = FilesModel::findByUuid(\StringUtil::binToUuid($uuid));
             switch ($fileObj->type){
                 case 'file':
-                    $this->galleryImages[] = new \File($fileObj->path);
+                    $this->galleryImages[] = new File($fileObj->path);
                     break;
                 case 'folder':
-                    $subFilesObj = \FilesModel::findByPid($fileObj->uuid);
+                    $subFilesObj = FilesModel::findByPid($fileObj->uuid);
                     foreach($subFilesObj as $subFileObj){
                         if($subFileObj->type === 'folder') break;
-                        $this->galleryImages[] = new \File($subFileObj->path);
+                        $this->galleryImages[] = new File($subFileObj->path);
                     }
                     break;
             }
         }
     }
-
-
-
 }
