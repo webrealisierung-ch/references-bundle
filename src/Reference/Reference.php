@@ -8,11 +8,13 @@ use Contao\FilesModel;
 
 class Reference
 {
+
     public $title;
     public $alias;
     public $teaser;
     public $description;
     public $singleSRC;
+    public $titleImage;
     public $galleryImages = array();
     public $gallerySRC;
     public $orderSRC;
@@ -22,6 +24,12 @@ class Reference
     public $published;
     public $start;
     public $stop;
+
+    protected $titleImageSize;
+    protected $galleryImageSize;
+
+    protected $imageFactory;
+
 
     public function __construct($Reference)
     {
@@ -38,8 +46,26 @@ class Reference
         $this->published = $Reference->published;
         $this->start = $Reference->start;
         $this->stop = $Reference->stop;
-
         $this->gallerySRC = $Reference->gallerySRC;
+        $this->imageFactory = \Contao\System::getContainer()->get('contao.image.image_factory');
+
+
+        if($this->singleSRC) {
+
+            $titleImageModel = FilesModel::findByUuid($this->singleSRC);
+
+            if($titleImageModel->path) {
+
+                $titleImageFile = new File($titleImageModel);
+
+                if($titleImageFile->exists() && $titleImageFile->isImage() && is_array($this->size)){
+                    $this->titleImage = $this->imageFactory->create(TL_ROOT . "/" . rawurldecode($titleImageFile->path), $this->size)->getUrl(TL_ROOT);
+                } elseif(file_exists(TL_ROOT.'/'.$titleImageFile->path)){
+                    $this->titleImage = $titleImageModel->path;
+                }
+            }
+
+        }
 
         $uuids = deserialize($Reference->gallerySRC);
         foreach ($uuids as $uuid){
@@ -59,4 +85,13 @@ class Reference
             }
         }
     }
+
+    public function setTitleImageSize(array $size){
+        $this->titleImageSize = $size;
+    }
+
+    public function setGalleryImageSize(array $size){
+        $this->galleryImageSize = $size;
+    }
+
 }
