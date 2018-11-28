@@ -8,8 +8,6 @@
 
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'activateFilter';
 
-var_dump($GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__']);
-
 $GLOBALS['TL_DCA']['tl_content']['palettes']['wr_references_list'] = "{type_legend},type,headline;{filter_legend},activateFilter;{image_legend},size;{template_legend:hide},customTpl;";
 $GLOBALS['TL_DCA']['tl_content']['palettes']['wr_references_filter'] = "{type_legend},type;{filter_legend},tl_references_filters;{template_legend:hide},customTpl;";
 
