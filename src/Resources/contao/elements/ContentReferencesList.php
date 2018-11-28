@@ -1,13 +1,5 @@
 <?php
 
-/**
- * Contao Open Source CMS
- *
- * Copyright (c) 2005-2016 Leo Feyer
- *
- * @license LGPL-3.0+
- */
-
 namespace Contao;
 
 use Wr\ReferencesBundle\Reference\Reference;
@@ -20,13 +12,13 @@ use Wr\ReferencesBundle\Reference\Reference;
 class ContentReferencesList extends \ContentElement
 {
 
-	/**
-	 * Template
-	 * @var string
-	 */
-	protected $strTemplate = 'ce_wr_references_list';
+    /**
+     * Template
+     * @var string
+     */
+    protected $strTemplate = 'ce_wr_references_list';
 
-	public function __construct($objElement, $strColumn)
+    public function __construct($objElement, $strColumn)
     {
         \Contao\System::loadLanguageFile('tl_wr_references');
         \Controller::loadDataContainer('tl_wr_references');
@@ -53,12 +45,12 @@ class ContentReferencesList extends \ContentElement
         return parent::generate();
 
     }
-        /**
-	 * Generate the content element
-	 */
+    /**
+     * Generate the content element
+     */
 
 
-	protected function compile()
+    protected function compile()
     {
 
         $imageSize = deserialize($this->size);
@@ -75,27 +67,21 @@ class ContentReferencesList extends \ContentElement
         \Input::setGet('object', \Input::get('object'));
         $getObject=\Input::get('object');
 
-        //Search all Filter fields in the data container
-        $filter_options = array();
-        $arrGetFilters = array();
-
-        foreach($GLOBALS['TL_DCA']['tl_wr_references']['fields'] as $key => $value){
-            if(preg_match("/filter/",$key)){
-                $filter_options[$key]=$this->$key;
-                \Input::setPost($key, \Input::Post($key));
-                if(\Input::Post($key)&&\Input::Post($key)!="default"){
-                    $arrGetFilters[$key]=\Input::Post($key);
-                }
-            }
-        }
-
         if($getObject){
             $item = WrReferencesModel::findByAlias($getObject);
             $this->Template->Item = $item;
-        }
-        elseif($arrGetFilters && $this->activateFilter){
+        } elseif( $this->activateFilter){
+
+            $arrGetFilters = array();
+
+            foreach($GLOBALS['TL_DCA']['tl_wr_references']['fields'] as $key => $value){
+                if(preg_match("/filter/",$key) && $this->$key){
+                    $arrGetFilters[$key] = deserialize($this->$key);
+                }
+            }
+
             $items = WrReferencesModel::findByFilters($arrGetFilters);
-        }else{
+        } else{
             $items = WrReferencesModel::findAll(array(
                 'column' => array('published=?'),
                 'value' => array(1)
