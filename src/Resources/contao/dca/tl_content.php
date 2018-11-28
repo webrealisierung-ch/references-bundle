@@ -4,8 +4,10 @@
 \Controller::loadDataContainer('tl_wr_references');
 \Controller::loadDataContainer('tl_wr_references_filter');
 
-$GLOBALS['TL_DCA']['tl_content']['palettes']['wr_references_list'] = "{type_legend},type,headline;{filter_legend},filter1,filter2,filter3,activateFilter;{image_legend},size;{template_legend:hide},customTpl;";
+$GLOBALS['TL_DCA']['tl_content']['palettes']['wr_references_list'] = "{type_legend},type,headline;{filter_legend},activateFilter;{image_legend},size;{template_legend:hide},customTpl;";
 $GLOBALS['TL_DCA']['tl_content']['palettes']['wr_references_filter'] = "{type_legend},type;{filter_legend},tl_references_filters;{template_legend:hide},customTpl;";
+
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['activateFilter'] = 'filter1,filter2,filter3';
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['filter1'] = array
 (
