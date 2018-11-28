@@ -4,7 +4,11 @@
 \Controller::loadDataContainer('tl_wr_references');
 \Controller::loadDataContainer('tl_wr_references_filter');
 
-$GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'] = str_replace('published','activateFilter,published,',$GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__']);
+
+
+$GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'activateFilter';
+
+var_dump($GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__']);
 
 $GLOBALS['TL_DCA']['tl_content']['palettes']['wr_references_list'] = "{type_legend},type,headline;{filter_legend},activateFilter;{image_legend},size;{template_legend:hide},customTpl;";
 $GLOBALS['TL_DCA']['tl_content']['palettes']['wr_references_filter'] = "{type_legend},type;{filter_legend},tl_references_filters;{template_legend:hide},customTpl;";
@@ -44,8 +48,9 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['filter3'] = array
 $GLOBALS['TL_DCA']['tl_content']['fields']['activateFilter'] = array
 (
     'exclude'                 => true,
-    'label'                   => &$GLOBALS['TL_LANG']['tl_article']['activateFilter'],
+    'label'                   => &$GLOBALS['TL_LANG']['tl_wr_references']['activateFilter'],
     'inputType'               => 'checkbox',
+    'eval'                    => array('submitOnChange'=>true),
     'sql'                     => "char(1) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_content']['fields']['tl_references_filters'] = array
