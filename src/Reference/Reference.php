@@ -9,6 +9,8 @@ use Contao\FilesModel;
 class Reference
 {
 
+    public $ReferenceModel;
+
     public $title;
     public $alias;
     public $teaser;
@@ -32,6 +34,8 @@ class Reference
 
     public function __construct($Reference, array $size = NULL)
     {
+
+        $this->ReferenceModel = $Reference;
 
         $this->title = $Reference->title;
         $this->alias = $Reference->alias;
