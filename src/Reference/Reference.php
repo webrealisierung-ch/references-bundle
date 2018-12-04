@@ -88,7 +88,7 @@ class Reference
         }
     }
 
-    static function generateImage($ImagePath, $size, $imageFactory){
+    public static function generateImage($ImagePath, $size, $imageFactory){
         if(!empty($ImagePath)) {
 
             $ImageFile = new File($ImagePath);
