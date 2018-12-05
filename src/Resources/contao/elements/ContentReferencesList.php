@@ -80,7 +80,7 @@ class ContentReferencesList extends \ContentElement
                 }
             }
 
-            $items = WrReferencesModel::findByFilters($arrGetFilters);
+            $items = WrReferencesModel::findByFiltersAndPublished($arrGetFilters);
         } else{
             $items = WrReferencesModel::findAll(array(
                 'column' => array('published=?'),
