@@ -110,6 +110,7 @@ $GLOBALS['TL_DCA']['tl_wr_references'] = array(
         'teaser' => array
         (
             'label' => &$GLOBALS['TL_LANG']['tl_wr_references']['teaser'],
+            'exclude' => true,
             'inputType' => 'textarea',
             'search' => false,
             'eval' => array('mandatory'=>true,'tl_class'=>'clr'),
@@ -118,6 +119,7 @@ $GLOBALS['TL_DCA']['tl_wr_references'] = array(
         'description' => array
         (
             'label' => &$GLOBALS['TL_LANG']['tl_wr_references']['description'],
+            'exclude' => true,
             'inputType' => 'textarea',
             'search' => true,
             'eval' => array('mandatory'=>true,'rte'=>'tinyMCE','tl_class'=>'clr'),
@@ -126,6 +128,7 @@ $GLOBALS['TL_DCA']['tl_wr_references'] = array(
         'singleSRC' => array
         (
             'label' => &$GLOBALS['TL_LANG']['tl_wr_references']['singleSRC'],
+            'exclude' => true,
             'inputType' => 'fileTree',
             'eval' => array('fieldType'=>'radio', 'filesOnly'=>true, 'extensions'=>'gif,jpg,jpeg,png', 'mandatory'=>false, 'tl_class'=>'clr'),
             'sql' => "blob NULL",
@@ -133,6 +136,7 @@ $GLOBALS['TL_DCA']['tl_wr_references'] = array(
         'singleSize' => array
         (
             'label' => &$GLOBALS['TL_LANG']['tl_wr_references']['singleSize'],
+            'exclude' => true,
             'inputType' => 'imageSize ',
             'eval' => array('fieldType'=>'radio', 'filesOnly'=>true, 'extensions'=>'gif,jpg,jpeg,png', 'mandatory'=>false, 'tl_class'=>'clr'),
             'sql' => "blob NULL",
@@ -140,6 +144,7 @@ $GLOBALS['TL_DCA']['tl_wr_references'] = array(
         'gallerySRC' => array
         (
             'label' => &$GLOBALS['TL_LANG']['tl_wr_references']['gallerySRC'],
+            'exclude' => true,
             'inputType' => 'fileTree',
             'eval' => array('multiple'=>true, 'fieldType'=>'checkbox', 'orderField'=>'orderSRC', 'extensions'=>'gif,jpg,jpeg,png', 'files'=>true, 'mandatory'=>false),
             'sql' => "blob NULL",
@@ -148,6 +153,7 @@ $GLOBALS['TL_DCA']['tl_wr_references'] = array(
         'orderSRC' => array
         (
             'label' => &$GLOBALS['TL_LANG']['tl_wr_references']['orderSRC'],
+            'exclude' => true,
             'sql' => "blob NULL"
         ),
         'filter1' => array
