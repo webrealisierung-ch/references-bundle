@@ -97,6 +97,9 @@
             <trans-unit id="tl_wr_references.delete.1">
                 <target>Referenz löschen</target>
             </trans-unit>
+            <trans-unit id="tl_wr_references.activateFilter.0">
+                <target>Referenz filtern</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

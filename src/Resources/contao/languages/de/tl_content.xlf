@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.1">
+    <file datatype="php" original="src/Resources/contao/languages/en/tl_content.php" source-language="en" target-language="de">
+        <body>
+            <trans-unit id="tl_content.filter_legend">
+                <target>Filter-Einstellungen</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
